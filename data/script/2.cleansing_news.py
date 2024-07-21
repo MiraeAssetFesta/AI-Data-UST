@@ -10,7 +10,7 @@ def load_news_articles(file_path):
         articles = json.load(f)
     return articles
 
-def clean_articles(keyword, articles):
+def clean_articles(stock, articles):
     cleaned_articles = []
     for article in articles:
         title = article['title']
@@ -27,7 +27,7 @@ def clean_articles(keyword, articles):
         content = re.sub(r'&.*?;', '', content)
         # 키워드가 포함되지 않았다면 제외, 증권 관련이면 보통 키워드 포함
         # NOTE: 영어로 된 키워드를 입력 받을 시엔 아래 코드를 주석 처리
-        if keyword not in content and keyword.replace(' ', '') not in content:
+        if stock not in content and stock.replace(' ', '') not in content:
             continue
         # # 한국어가 깨졌다면 제외
         # if not re.search(r'[^ᄀ-힣\s@]', content):
@@ -54,12 +54,12 @@ def save_articles(articles, file_path):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("--keyword", type=str, help="Keyword to search news articles", required=True)
+    parser.add_argument("--stock", type=str, help="Stock to search news articles", required=True)
     args = parser.parse_args()
-    keyword = args.keyword
-    articles = load_news_articles(f"../{keyword}_news.json")
-    cleaned_articles = clean_articles(keyword, articles)
-    save_articles(cleaned_articles, f"../{keyword}_cleaned_news.json")
+    stock = args.stock
+    articles = load_news_articles(f"../{stock}_news.json")
+    cleaned_articles = clean_articles(stock, articles)
+    save_articles(cleaned_articles, f"../{stock}_cleaned_news.json")
 
 if __name__ == "__main__":
     main()
