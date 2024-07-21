@@ -79,9 +79,9 @@ if __name__ == '__main__':
         request_id='9fe15107-403c-43d2-b983-93eb254cc4e3'
     )
     
-    news_list = json.load(open(f"{args.stock}_passed_news.json", "r", encoding="utf-8"))
+    news_list = json.load(open(f"../{args.stock}_passed_news.json", "r", encoding="utf-8"))
     extracted_keywords = extract_keywords(news_list, args.stock, completion_executor)
     
-    with open(f"keywords_per_stock/{args.stock}_keywords.json", "w", encoding="utf-8") as f:
+    with open(f"../keywords_per_stock/{args.stock}_keywords.json", "w", encoding="utf-8") as f:
         json.dump(extracted_keywords, f, ensure_ascii=False, indent=4)    
 

@@ -75,9 +75,9 @@ if __name__ == '__main__':
         request_id='16943d15-eb47-45fb-b9ae-a38200cb9ce7'
     )
     
-    news_list = json.load(open(f"{args.stock}_summarized_news.json", "r", encoding="utf-8"))
+    news_list = json.load(open(f"../{args.stock}_summarized_news.json", "r", encoding="utf-8"))
     passed_news = filter_news(news_list, args.stock, completion_executor)
     
-    with open(f"{args.stock}_passed_news.json", "w", encoding="utf-8") as f:
+    with open(f"../{args.stock}_passed_news.json", "w", encoding="utf-8") as f:
         json.dump(passed_news, f, ensure_ascii=False, indent=4)    
     

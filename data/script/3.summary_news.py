@@ -36,7 +36,7 @@ class CompletionExecutor:
 
 
 def summarize_news(stock, completion_executor):
-    with open(f"{stock}_cleaned_news.json", 'r', encoding='utf-8') as f:
+    with open(f"../{stock}_cleaned_news.json", 'r', encoding='utf-8') as f:
         news_list = json.load(f)
         for news in news_list:
             request_data = json.loads('{"texts" : [ "' + \
@@ -58,7 +58,7 @@ def summarize_news(stock, completion_executor):
 
 
 def save_summary_news(stock, news_list):
-    with open(f'{stock}_summarized_news.json', 'w', encoding='utf-8') as f:
+    with open(f'../{stock}_summarized_news.json', 'w', encoding='utf-8') as f:
         json.dump(news_list, f, ensure_ascii=False, indent=4)
 
 
