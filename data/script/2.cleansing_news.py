@@ -27,8 +27,8 @@ def clean_articles(stock, articles):
         content = re.sub(r'&.*?;', '', content)
         # 키워드가 포함되지 않았다면 제외, 증권 관련이면 보통 키워드 포함
         # NOTE: 영어로 된 키워드를 입력 받을 시엔 아래 코드를 주석 처리
-        if stock not in content and stock.replace(' ', '') not in content:
-            continue
+        # if stock not in content and stock.replace(' ', '') not in content:
+        #     continue
         # # 한국어가 깨졌다면 제외
         # if not re.search(r'[^ᄀ-힣\s@]', content):
         #     continue        
