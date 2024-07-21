@@ -4,6 +4,7 @@ import requests
 import time
 import json
 from argparse import ArgumentParser
+from env import api_key, api_key_primary_val
 
 
 class CompletionExecutor:
@@ -74,8 +75,8 @@ if __name__ == '__main__':
     
     completion_executor = CompletionExecutor(
         host='https://clovastudio.stream.ntruss.com',
-        api_key='NTA0MjU2MWZlZTcxNDJiYw3uGNnTgIt0AjzNuqcIgFp5ylO92dJG1LY2R2/SQS8a',
-        api_key_primary_val='YoSx0SuFB8posSy0xxdLUk6yZCMdvSYzWZ6XY9EH',
+        api_key=api_key,
+        api_key_primary_val=api_key_primary_val,
         request_id='9fe15107-403c-43d2-b983-93eb254cc4e3'
     )
     

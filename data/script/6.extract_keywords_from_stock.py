@@ -5,6 +5,7 @@ import time
 import json
 import os
 from argparse import ArgumentParser
+from env import api_key, api_key_primary_val
 
 
 class CompletionExecutor:
@@ -85,12 +86,12 @@ def extract_keywords(completion_executor, path="../keywords_per_stock"):
 if __name__ == '__main__':
     completion_executor = CompletionExecutor(
         host='https://clovastudio.stream.ntruss.com',
-        api_key='NTA0MjU2MWZlZTcxNDJiYw3uGNnTgIt0AjzNuqcIgFp5ylO92dJG1LY2R2/SQS8a',
-        api_key_primary_val='YoSx0SuFB8posSy0xxdLUk6yZCMdvSYzWZ6XY9EH',
+        api_key=api_key,
+        api_key_primary_val=api_key_primary_val,
         request_id='e996d756-969d-46f5-8467-12b1d94a3671'
     )
     
     extracted_keywords = extract_keywords(completion_executor)
     
-    with open("../keywords_per_stocks.json", "w", encoding="utf-8") as f:
+    with open("keywords_per_stocks.json", "w", encoding="utf-8") as f:
         json.dump(extracted_keywords, f, ensure_ascii=False, indent=4)    

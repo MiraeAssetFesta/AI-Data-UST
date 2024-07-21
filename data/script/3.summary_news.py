@@ -5,7 +5,7 @@ import json
 import http.client
 import time
 from argparse import ArgumentParser
-from script.env import api_key, api_key_primary_val
+from env import api_key, api_key_primary_val
 
 
 class CompletionExecutor:
