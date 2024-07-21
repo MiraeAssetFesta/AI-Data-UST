@@ -26,14 +26,16 @@ def clean_articles(keyword, articles):
         title = re.sub(r'&.*?;', '', title)
         content = re.sub(r'&.*?;', '', content)
         # 키워드가 포함되지 않았다면 제외, 증권 관련이면 보통 키워드 포함
-        # if keyword not in content and keyword.replace(' ', '') not in content:
-        #     continue
+        # NOTE: 영어로 된 키워드를 입력 받을 시엔 아래 코드를 주석 처리
+        if keyword not in content and keyword.replace(' ', '') not in content:
+            continue
         # # 한국어가 깨졌다면 제외
         # if not re.search(r'[^ᄀ-힣\s@]', content):
         #     continue        
         # 4000문자가 넘는건 대부분 광고기사이므로 제외
-        # if len(content) > 4000:
-        #     continue
+        # NOTE: 영어로 된 키워드를 입력 받을 시엔 아래 코드를 주석 처리
+        if len(content) > 4000:
+            continue
         # 특정 문자열을 포함하는 기사 제외
         if '언론사 구독 해지되었습니다.' in content \
             or '열린보도원칙 당 매체는' in content \
