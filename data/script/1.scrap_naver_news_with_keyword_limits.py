@@ -10,7 +10,7 @@ from env import client_id, client_secret
 
 warnings.filterwarnings('ignore')
 
-def scrap_naver_news(keyword, limits):
+def scrap_naver_news(stock, limits):
     base_url = "https://openapi.naver.com/v1/search/news.json"
     headers = {
         "X-Naver-Client-Id": client_id,
@@ -20,7 +20,7 @@ def scrap_naver_news(keyword, limits):
     start = 1
     # limit_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     params = {
-        "query": keyword,
+        "query": stock,
         "sort": "date",
         "start": start,
         "display": 100
@@ -41,13 +41,14 @@ def scrap_naver_news(keyword, limits):
                 # description = item['description']
                 link = item['link']
                 if article_content := fetch_article_content(link):
+                    if article_content is None: continue
                     title = item['title']
                     articles.append({"date": pub_date, "title": title, "content": article_content})
                     cnt += 1
 
             start += 100
             params = {
-                "query": keyword,
+                "query": stock,
                 "sort": "date",
                 "start": start,
                 "display": 100
@@ -74,15 +75,15 @@ def fetch_article_content(url):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("--keyword", type=str, help="Keyword to search news articles", required=True)
-    parser.add_argument("--limits", type=int, help="Number of limits to search news articles", default=3)
+    parser.add_argument("--stock", type=str, help="Stock to search news articles", required=True)
+    parser.add_argument("--limits", type=int, help="Number of limits to search news articles", default=100)
     args = parser.parse_args()
     
-    keyword = args.keyword
+    stock = args.stock
     limits = args.limits
-    articles = scrap_naver_news(keyword, limits)
+    articles = scrap_naver_news(stock, limits)
     
-    with open(f"../{keyword}_news.json", "w", encoding="utf-8") as f:
+    with open(f"../{stock}_news.json", "w", encoding="utf-8") as f:
         json.dump(articles, f, ensure_ascii=False, indent=4)    
     
 if __name__ == "__main__":
