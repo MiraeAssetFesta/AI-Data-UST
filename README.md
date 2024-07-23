@@ -11,6 +11,9 @@ Team 유쾌상쾌통계
 ### Contribution
 -
 
+## History
+- 
+
 ## Development
 ### 😺 Commit Convention
 We follow a structured commit convention to maintain clarity and consistency in our project history. Each commit message starts with a keyword that describes the nature of the change:
