@@ -33,7 +33,6 @@ def clean_articles(stock, articles):
         # if not re.search(r'[^ᄀ-힣\s@]', content):
         #     continue        
         # 4000문자가 넘는건 대부분 광고기사이므로 제외
-        # NOTE: 영어로 된 키워드를 입력 받을 시엔 아래 코드를 주석 처리
         if len(content) > 4000:
             continue
         # 특정 문자열을 포함하는 기사 제외
